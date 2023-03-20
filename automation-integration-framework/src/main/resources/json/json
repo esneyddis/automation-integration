@@ -1,0 +1,1465 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "WsIdentity::InstantID Schema",
+  "id": "https://wsonline3.seisint.com/WsIdentity/InstantID?ver_=2.6#",
+  "properties": {
+    "Exceptions": {
+      "$ref": "#/definitions/ArrayOfEspException"
+    },
+    "InstantIDRequest": {
+      "type": "object",
+      "properties": {
+        "User": {
+          "$ref": "#/definitions/User"
+        },
+        "Options": {
+          "$ref": "#/definitions/InstantIDOption2"
+        },
+        "SearchBy": {
+          "$ref": "#/definitions/InstantIDSearchBy"
+        }
+      },
+      "additionalProperties": false
+    },
+    "InstantIDResponseEx": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "#/definitions/InstantIDResponse"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Fault": {
+      "type": "object",
+      "properties": {
+        "faultstring": {
+          "type": "string"
+        },
+        "faultactor": {
+          "type": "string"
+        },
+        "detail": {
+          "type": "object",
+          "properties": {
+            "Exceptions": {
+              "$ref": "#/definitions/ArrayOfEspException"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "EspException": {
+      "type": "object",
+      "properties": {
+        "Code": {
+          "type": "string"
+        },
+        "Audience": {
+          "type": "string"
+        },
+        "Source": {
+          "type": "string"
+        },
+        "Message": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ArrayOfEspException": {
+      "type": "object",
+      "properties": {
+        "Source": {
+          "type": "string"
+        },
+        "Exception": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EspException"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "InstantIDRequestType": {
+      "type": "object",
+      "properties": {
+        "User": {
+          "$ref": "#/definitions/User"
+        },
+        "Options": {
+          "$ref": "#/definitions/InstantIDOption2"
+        },
+        "SearchBy": {
+          "$ref": "#/definitions/InstantIDSearchBy"
+        }
+      },
+      "additionalProperties": false
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "ReferenceCode": {
+          "type": "string"
+        },
+        "BillingCode": {
+          "type": "string"
+        },
+        "QueryId": {
+          "type": "string"
+        },
+        "GLBPurpose": {
+          "type": "string"
+        },
+        "DLPurpose": {
+          "type": "string"
+        },
+        "EndUser": {
+          "$ref": "#/definitions/EndUserInfo"
+        },
+        "MaxWaitSeconds": {
+          "type": "integer"
+        },
+        "AccountNumber": {
+          "type": "string"
+        },
+        "OutputType": {
+          "$ref": "#/definitions/ResultOutputType"
+        }
+      },
+      "additionalProperties": false
+    },
+    "EndUserInfo": {
+      "type": "object",
+      "properties": {
+        "CompanyName": {
+          "type": "string"
+        },
+        "StreetAddress1": {
+          "type": "string"
+        },
+        "City": {
+          "type": "string"
+        },
+        "State": {
+          "type": "string"
+        },
+        "Zip5": {
+          "type": "string"
+        },
+        "Phone": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ResultOutputType": {
+      "type": "string",
+      "oneOf": [
+        {
+          "enum": [
+            ""
+          ],
+          "title": "Default"
+        },
+        {
+          "enum": [
+            "X"
+          ],
+          "title": "XML Only"
+        },
+        {
+          "enum": [
+            "B"
+          ],
+          "title": "XML and PDF"
+        },
+        {
+          "enum": [
+            "P"
+          ],
+          "title": "PDF Only"
+        }
+      ]
+    },
+    "InstantIDOption2": {
+      "type": "object",
+      "properties": {
+        "WatchLists": {
+          "type": "object",
+          "properties": {
+            "WatchList": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "IncludeCLOverride": {
+          "type": "boolean"
+        },
+        "IncludeMSOverride": {
+          "type": "boolean"
+        },
+        "IncludeDLVerification": {
+          "type": "boolean"
+        },
+        "PoBoxCompliance": {
+          "type": "boolean"
+        },
+        "IncludeModels": {
+          "$ref": "#/definitions/InstantIDModelsFP2"
+        },
+        "RedFlagsReport": {
+          "type": "string"
+        },
+        "GlobalWatchlistThreshold": {
+          "type": "string"
+        },
+        "DOBMatch": {
+          "$ref": "#/definitions/DOBMatchOptions"
+        },
+        "IncludeAllRiskIndicators": {
+          "type": "boolean"
+        },
+        "RequireExactMatch": {
+          "$ref": "#/definitions/RequireExactMatchInstID"
+        },
+        "CustomCVIModelName": {
+          "type": "string"
+        },
+        "LastSeenThreshold": {
+          "type": "string"
+        },
+        "IncludeMIOverride": {
+          "type": "boolean"
+        },
+        "CVICalculationOptions": {
+          "$ref": "#/definitions/OptionsForCVICalculation"
+        },
+        "InstantIDVersion": {
+          "type": "string"
+        },
+        "IncludeDeliveryPointBarcode": {
+          "type": "boolean"
+        },
+        "NameInputOrder": {
+          "$ref": "#/definitions/NameOrder"
+        }
+      },
+      "additionalProperties": false
+    },
+    "InstantIDModelsFP2": {
+      "type": "object",
+      "properties": {
+        "Thindex": {
+          "type": "boolean"
+        },
+        "StudentDefenderModel": {
+          "$ref": "#/definitions/StudentDefenderModel"
+        },
+        "ModelRequests": {
+          "type": "object",
+          "properties": {
+            "ModelRequest": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ModelRequest"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "FraudPointModel": {
+          "$ref": "#/definitions/FraudPointModelWithOptions"
+        }
+      },
+      "additionalProperties": false
+    },
+    "StudentDefenderModel": {
+      "type": "object",
+      "properties": {
+        "StudentDefender": {
+          "type": "boolean"
+        },
+        "IsStudentApplicant": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ModelRequest": {
+      "type": "object",
+      "properties": {
+        "ModelName": {
+          "type": "string"
+        },
+        "ModelOptions": {
+          "type": "object",
+          "properties": {
+            "ModelOption": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ModelOption"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "ModelOption": {
+      "type": "object",
+      "properties": {
+        "OptionName": {
+          "type": "string"
+        },
+        "OptionValue": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "FraudPointModelWithOptions": {
+      "type": "object",
+      "properties": {
+        "ModelName": {
+          "type": "string"
+        },
+        "IncludeRiskIndices": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "DOBMatchOptions": {
+      "type": "object",
+      "properties": {
+        "MatchType": {
+          "$ref": "#/definitions/DOBMatchType"
+        },
+        "MatchYearRadius": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "DOBMatchType": {
+      "type": "string",
+      "oneOf": [
+        {
+          "enum": [
+            "FuzzyCCYYMMDD"
+          ],
+          "title": "Default"
+        },
+        {
+          "enum": [
+            "FuzzyCCYYMM"
+          ]
+        },
+        {
+          "enum": [
+            "RadiusCCYY"
+          ],
+          "title": "Use MatchYearRadius"
+        },
+        {
+          "enum": [
+            "ExactCCYYMMDD"
+          ]
+        },
+        {
+          "enum": [
+            "ExactCCYYMM"
+          ]
+        }
+      ]
+    },
+    "RequireExactMatchInstID": {
+      "type": "object",
+      "properties": {
+        "LastName": {
+          "type": "boolean"
+        },
+        "FirstName": {
+          "type": "boolean"
+        },
+        "FirstNameAllowNickname": {
+          "type": "boolean"
+        },
+        "HomePhone": {
+          "type": "boolean"
+        },
+        "SSN": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "OptionsForCVICalculation": {
+      "type": "object",
+      "properties": {
+        "IncludeDOB": {
+          "type": "boolean"
+        },
+        "IncludeDriverLicense": {
+          "type": "boolean"
+        },
+        "DisableCustomerNetworkOption": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "NameOrder": {
+      "type": "string",
+      "oneOf": [
+        {
+          "enum": [
+            "Unknown"
+          ],
+          "title": "Unknown"
+        },
+        {
+          "enum": [
+            "FML"
+          ],
+          "title": "First Middle Last"
+        },
+        {
+          "enum": [
+            "LFM"
+          ],
+          "title": "Last First Middle"
+        }
+      ]
+    },
+    "InstantIDSearchBy": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "$ref": "#/definitions/Name"
+        },
+        "Address": {
+          "$ref": "#/definitions/Address"
+        },
+        "DOB": {
+          "$ref": "#/definitions/Date"
+        },
+        "Age": {
+          "type": "integer"
+        },
+        "SSN": {
+          "type": "string"
+        },
+        "SSNLast4": {
+          "type": "string"
+        },
+        "DriverLicenseNumber": {
+          "type": "string"
+        },
+        "DriverLicenseState": {
+          "type": "string"
+        },
+        "IPAddress": {
+          "type": "string"
+        },
+        "HomePhone": {
+          "type": "string"
+        },
+        "WorkPhone": {
+          "type": "string"
+        },
+        "UseDOBFilter": {
+          "type": "boolean"
+        },
+        "DOBRadius": {
+          "type": "integer"
+        },
+        "Passport": {
+          "$ref": "#/definitions/Passport"
+        },
+        "Gender": {
+          "type": "string"
+        },
+        "Email": {
+          "type": "string"
+        },
+        "Channel": {
+          "$ref": "#/definitions/ChannelIdentifier"
+        },
+        "Income": {
+          "type": "string"
+        },
+        "OwnOrRent": {
+          "$ref": "#/definitions/OwnRent"
+        },
+        "LocationIdentifier": {
+          "type": "string"
+        },
+        "OtherApplicationIdentifier1": {
+          "type": "string"
+        },
+        "OtherApplicationIdentifier2": {
+          "type": "string"
+        },
+        "OtherApplicationIdentifier3": {
+          "type": "string"
+        },
+        "ApplicationDateTime": {
+          "$ref": "#/definitions/TimeStamp"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Name": {
+      "type": "object",
+      "properties": {
+        "Full": {
+          "type": "string"
+        },
+        "First": {
+          "type": "string"
+        },
+        "Middle": {
+          "type": "string"
+        },
+        "Last": {
+          "type": "string"
+        },
+        "Suffix": {
+          "type": "string"
+        },
+        "Prefix": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Address": {
+      "type": "object",
+      "properties": {
+        "StreetNumber": {
+          "type": "string"
+        },
+        "StreetPreDirection": {
+          "type": "string"
+        },
+        "StreetName": {
+          "type": "string"
+        },
+        "StreetSuffix": {
+          "type": "string"
+        },
+        "StreetPostDirection": {
+          "type": "string"
+        },
+        "UnitDesignation": {
+          "type": "string"
+        },
+        "UnitNumber": {
+          "type": "string"
+        },
+        "StreetAddress1": {
+          "type": "string"
+        },
+        "StreetAddress2": {
+          "type": "string"
+        },
+        "City": {
+          "type": "string"
+        },
+        "State": {
+          "type": "string"
+        },
+        "Zip5": {
+          "type": "string"
+        },
+        "Zip4": {
+          "type": "string"
+        },
+        "County": {
+          "type": "string"
+        },
+        "PostalCode": {
+          "type": "string"
+        },
+        "StateCityZip": {
+          "type": "string"
+        },
+        "Latitude": {
+          "type": "string"
+        },
+        "Longitude": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Date": {
+      "type": "object",
+      "properties": {
+        "Year": {
+          "type": "integer"
+        },
+        "Month": {
+          "type": "integer"
+        },
+        "Day": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Passport": {
+      "type": "object",
+      "properties": {
+        "Number": {
+          "type": "string"
+        },
+        "ExpirationDate": {
+          "$ref": "#/definitions/Date"
+        },
+        "Country": {
+          "type": "string"
+        },
+        "MachineReadableLine1": {
+          "type": "string"
+        },
+        "MachineReadableLine2": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ChannelIdentifier": {
+      "type": "string",
+      "enum": [
+        "",
+        "Mail",
+        "PointOfSale",
+        "Kiosk",
+        "Internet",
+        "Branch",
+        "Telephonic",
+        "Other"
+      ]
+    },
+    "OwnRent": {
+      "type": "string",
+      "enum": [
+        "",
+        "Own",
+        "Rent"
+      ]
+    },
+    "TimeStamp": {
+      "type": "object",
+      "properties": {
+        "Year": {
+          "type": "integer"
+        },
+        "Month": {
+          "type": "integer"
+        },
+        "Day": {
+          "type": "integer"
+        },
+        "Hour24": {
+          "type": "integer"
+        },
+        "Minute": {
+          "type": "integer"
+        },
+        "Second": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "InstantIDResponseExType": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "#/definitions/InstantIDResponse"
+        }
+      },
+      "additionalProperties": false
+    },
+    "InstantIDResponse": {
+      "type": "object",
+      "properties": {
+        "Header": {
+          "$ref": "#/definitions/ResponseHeader"
+        },
+        "Result": {
+          "$ref": "#/definitions/InstantIDResult"
+        },
+        "Pdf": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ResponseHeader": {
+      "type": "object",
+      "properties": {
+        "Status": {
+          "type": "integer"
+        },
+        "Message": {
+          "type": "string"
+        },
+        "QueryId": {
+          "type": "string"
+        },
+        "TransactionId": {
+          "type": "string"
+        },
+        "Exceptions": {
+          "type": "object",
+          "properties": {
+            "Item": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/WsException"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "WsException": {
+      "type": "object",
+      "properties": {
+        "Source": {
+          "type": "string"
+        },
+        "Code": {
+          "type": "integer"
+        },
+        "Location": {
+          "type": "string"
+        },
+        "Message": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "InstantIDResult": {
+      "type": "object",
+      "properties": {
+        "InputEcho": {
+          "$ref": "#/definitions/InstantIDSearchBy"
+        },
+        "UniqueId": {
+          "type": "string"
+        },
+        "VerifiedInput": {
+          "$ref": "#/definitions/VerifiedInput"
+        },
+        "DOBVerified": {
+          "type": "boolean"
+        },
+        "NameAddressSSNSummary": {
+          "type": "integer"
+        },
+        "NameAddressPhone": {
+          "$ref": "#/definitions/NameAddressPhone"
+        },
+        "ComprehensiveVerification": {
+          "$ref": "#/definitions/ComprehensiveVerificationStruct"
+        },
+        "CustomComprehensiveVerification": {
+          "$ref": "#/definitions/CustomComprehensiveVerificationStruct"
+        },
+        "InputCorrected": {
+          "$ref": "#/definitions/InputCorrected"
+        },
+        "NewAreaCode": {
+          "$ref": "#/definitions/NewAreaCode"
+        },
+        "ReversePhone": {
+          "$ref": "#/definitions/IdentityReversePhone"
+        },
+        "PhoneOfNameAddress": {
+          "type": "string"
+        },
+        "SSNInfo": {
+          "$ref": "#/definitions/SSNInfo"
+        },
+        "ChronologyHistories": {
+          "type": "object",
+          "properties": {
+            "ChronologyHistory": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ChronologyHistory"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "WatchLists": {
+          "type": "object",
+          "properties": {
+            "WatchList": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/WatchList"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "AdditionalScore1": {
+          "type": "string"
+        },
+        "AdditionalScore2": {
+          "type": "string"
+        },
+        "CurrentName": {
+          "$ref": "#/definitions/Name"
+        },
+        "AdditionalLastNames": {
+          "type": "object",
+          "properties": {
+            "AdditionalLastName": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AdditionalLastName"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "Models": {
+          "type": "object",
+          "properties": {
+            "Model": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ModelSequenced"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "RedFlagsReport": {
+          "$ref": "#/definitions/RedFlagsReport"
+        },
+        "PassportValidated": {
+          "type": "boolean"
+        },
+        "FoundSSNCount": {
+          "type": "integer"
+        },
+        "DecedentInfo": {
+          "$ref": "#/definitions/DecedentInfo"
+        },
+        "DOBMatchLevel": {
+          "type": "integer"
+        },
+        "SSNFoundForLexID": {
+          "type": "boolean"
+        },
+        "AddressPOBox": {
+          "type": "boolean"
+        },
+        "AddressCMRA": {
+          "type": "boolean"
+        },
+        "InstantIDVersion": {
+          "type": "string"
+        },
+        "EmergingId": {
+          "type": "boolean"
+        },
+        "AddressStandardized": {
+          "type": "boolean"
+        },
+        "StandardizedInputAddress": {
+          "$ref": "#/definitions/AddressWithGeoLocation"
+        },
+        "AddressSecondaryRangeMismatch": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "VerifiedInput": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "$ref": "#/definitions/Name"
+        },
+        "Address": {
+          "$ref": "#/definitions/AddressWithDPBC"
+        },
+        "SSN": {
+          "type": "string"
+        },
+        "HomePhone": {
+          "type": "string"
+        },
+        "DOB": {
+          "$ref": "#/definitions/MaskableDate"
+        },
+        "DriverLicenseNumber": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "AddressWithDPBC": {
+      "type": "object",
+      "properties": {
+        "StreetNumber": {
+          "type": "string"
+        },
+        "StreetPreDirection": {
+          "type": "string"
+        },
+        "StreetName": {
+          "type": "string"
+        },
+        "StreetSuffix": {
+          "type": "string"
+        },
+        "StreetPostDirection": {
+          "type": "string"
+        },
+        "UnitDesignation": {
+          "type": "string"
+        },
+        "UnitNumber": {
+          "type": "string"
+        },
+        "StreetAddress1": {
+          "type": "string"
+        },
+        "StreetAddress2": {
+          "type": "string"
+        },
+        "City": {
+          "type": "string"
+        },
+        "State": {
+          "type": "string"
+        },
+        "Zip5": {
+          "type": "string"
+        },
+        "Zip4": {
+          "type": "string"
+        },
+        "County": {
+          "type": "string"
+        },
+        "PostalCode": {
+          "type": "string"
+        },
+        "StateCityZip": {
+          "type": "string"
+        },
+        "Latitude": {
+          "type": "string"
+        },
+        "Longitude": {
+          "type": "string"
+        },
+        "DeliveryPointBarcode": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "MaskableDate": {
+      "type": "object",
+      "properties": {
+        "Year": {
+          "type": "string"
+        },
+        "Month": {
+          "type": "string"
+        },
+        "Day": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "NameAddressPhone": {
+      "type": "object",
+      "properties": {
+        "Summary": {
+          "type": "string"
+        },
+        "Type": {
+          "type": "string"
+        },
+        "Status": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ComprehensiveVerificationStruct": {
+      "type": "object",
+      "properties": {
+        "ComprehensiveVerificationIndex": {
+          "type": "integer"
+        },
+        "RiskIndicators": {
+          "type": "object",
+          "properties": {
+            "RiskIndicator": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SequencedRiskIndicator"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "PotentialFollowupActions": {
+          "type": "object",
+          "properties": {
+            "FollowupAction": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RiskIndicator"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "SequencedRiskIndicator": {
+      "type": "object",
+      "properties": {
+        "RiskCode": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "Sequence": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "RiskIndicator": {
+      "type": "object",
+      "properties": {
+        "RiskCode": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CustomComprehensiveVerificationStruct": {
+      "type": "object",
+      "properties": {
+        "ComprehensiveVerificationIndex": {
+          "type": "integer"
+        },
+        "RiskIndicators": {
+          "type": "object",
+          "properties": {
+            "RiskIndicator": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SequencedRiskIndicator"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "PotentialFollowupActions": {
+          "type": "object",
+          "properties": {
+            "FollowupAction": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RiskIndicator"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "Name": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "InputCorrected": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "$ref": "#/definitions/Name"
+        },
+        "Address": {
+          "$ref": "#/definitions/Address"
+        },
+        "SSN": {
+          "type": "string"
+        },
+        "HomePhone": {
+          "type": "string"
+        },
+        "DOB": {
+          "$ref": "#/definitions/Date"
+        }
+      },
+      "additionalProperties": false
+    },
+    "NewAreaCode": {
+      "type": "object",
+      "properties": {
+        "AreaCode": {
+          "type": "string"
+        },
+        "EffectiveDate": {
+          "$ref": "#/definitions/Date"
+        }
+      },
+      "additionalProperties": false
+    },
+    "IdentityReversePhone": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "$ref": "#/definitions/Name"
+        },
+        "Address": {
+          "$ref": "#/definitions/Address"
+        }
+      },
+      "additionalProperties": false
+    },
+    "SSNInfo": {
+      "type": "object",
+      "properties": {
+        "SSN": {
+          "type": "string"
+        },
+        "Valid": {
+          "type": "string"
+        },
+        "IssuedLocation": {
+          "type": "string"
+        },
+        "IssuedStartDate": {
+          "$ref": "#/definitions/Date"
+        },
+        "IssuedEndDate": {
+          "$ref": "#/definitions/Date"
+        },
+        "FDNSsnInd": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ChronologyHistory": {
+      "type": "object",
+      "properties": {
+        "Address": {
+          "$ref": "#/definitions/AddressWithDPBC"
+        },
+        "Phone": {
+          "type": "string"
+        },
+        "DateFirstSeen": {
+          "$ref": "#/definitions/Date"
+        },
+        "DateLastSeen": {
+          "$ref": "#/definitions/Date"
+        },
+        "IsBestAddress": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "WatchList": {
+      "type": "object",
+      "properties": {
+        "Table": {
+          "type": "string"
+        },
+        "RecordNumber": {
+          "type": "string"
+        },
+        "Name": {
+          "$ref": "#/definitions/UnicodeName"
+        },
+        "Address": {
+          "$ref": "#/definitions/Address"
+        },
+        "Country": {
+          "type": "string"
+        },
+        "EntityName": {
+          "type": "string"
+        },
+        "Sequence": {
+          "type": "integer"
+        },
+        "Program": {
+          "type": "string"
+        },
+        "RepWLNumWithName": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UnicodeName": {
+      "type": "object",
+      "properties": {
+        "Full": {
+          "type": "string"
+        },
+        "First": {
+          "type": "string"
+        },
+        "Middle": {
+          "type": "string"
+        },
+        "Last": {
+          "type": "string"
+        },
+        "Suffix": {
+          "type": "string"
+        },
+        "Prefix": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "AdditionalLastName": {
+      "type": "object",
+      "properties": {
+        "DateLastSeen": {
+          "$ref": "#/definitions/Date"
+        },
+        "LastName": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ModelSequenced": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "Scores": {
+          "type": "object",
+          "properties": {
+            "Score": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ScoreSequenced"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "ScoreSequenced": {
+      "type": "object",
+      "properties": {
+        "Type": {
+          "type": "string"
+        },
+        "Value": {
+          "type": "integer"
+        },
+        "RiskIndices": {
+          "type": "object",
+          "properties": {
+            "RiskIndex": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/NameValuePair"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "RiskIndicators": {
+          "type": "object",
+          "properties": {
+            "RiskIndicator": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SequencedRiskIndicator"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "NameValuePair": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "Value": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "RedFlagsReport": {
+      "type": "object",
+      "properties": {
+        "Version": {
+          "type": "integer"
+        },
+        "RedFlags": {
+          "$ref": "#/definitions/ArrayOfRedFlag"
+        }
+      },
+      "additionalProperties": false
+    },
+    "RedFlag": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "HighRiskIndicators": {
+          "type": "object",
+          "properties": {
+            "HighRiskIndicator": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SequencedRiskIndicator"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "ArrayOfRedFlag": {
+      "type": "object",
+      "properties": {
+        "RedFlag": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RedFlag"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "DecedentInfo": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "$ref": "#/definitions/Name"
+        },
+        "DOD": {
+          "$ref": "#/definitions/Date"
+        },
+        "DOB": {
+          "$ref": "#/definitions/Date"
+        }
+      },
+      "additionalProperties": false
+    },
+    "AddressWithGeoLocation": {
+      "type": "object",
+      "properties": {
+        "StreetNumber": {
+          "type": "string"
+        },
+        "StreetPreDirection": {
+          "type": "string"
+        },
+        "StreetName": {
+          "type": "string"
+        },
+        "StreetSuffix": {
+          "type": "string"
+        },
+        "StreetPostDirection": {
+          "type": "string"
+        },
+        "UnitDesignation": {
+          "type": "string"
+        },
+        "UnitNumber": {
+          "type": "string"
+        },
+        "StreetAddress1": {
+          "type": "string"
+        },
+        "StreetAddress2": {
+          "type": "string"
+        },
+        "City": {
+          "type": "string"
+        },
+        "State": {
+          "type": "string"
+        },
+        "Zip5": {
+          "type": "string"
+        },
+        "Zip4": {
+          "type": "string"
+        },
+        "County": {
+          "type": "string"
+        },
+        "PostalCode": {
+          "type": "string"
+        },
+        "StateCityZip": {
+          "type": "string"
+        },
+        "Latitude": {
+          "type": "string"
+        },
+        "Longitude": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
