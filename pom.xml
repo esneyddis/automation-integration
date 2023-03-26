@@ -27,7 +27,7 @@
             <testng.version>7.6.2-SNAPSHOT</testng.version>
             <mockito.version>5.1.1</mockito.version>
             <groovy-all.version>3.0.13</groovy-all.version>
-            <rest-assured.version>5.3.0</rest-assured.version>
+            <rest-assured.version>5.2.0</rest-assured.version>
             <postgresql.version>42.4.1</postgresql.version>
             <log4j.version>2.19.0</log4j.version>
             <json-simple.version>1.1</json-simple.version>
@@ -98,9 +98,25 @@
    </build>
     <dependencies>
         <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>${groovy-all.version}</version>
+            <type>pom</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.codehaus.groovy</groupId>
+                    <artifactId>groovy-test</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.groovy</groupId>
+                    <artifactId>groovy-test-junit5</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>5.3.0</version>
+            <version>5.2.0</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.groovy</groupId>
@@ -152,6 +168,11 @@
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>3.23.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>0.15</version>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
